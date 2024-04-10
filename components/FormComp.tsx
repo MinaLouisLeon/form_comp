@@ -30,7 +30,7 @@ const FormComp = () => {
     const [formSchemaState, setFormSchemaState] = useState<any>(FormSchema);
     const [mapState, setMapState] = useState<{ id: number | null, name: string, input?: string }[]>([]);
     const [formData, setFormData] = useState<any>();
-    
+
     const getAllCategory = async () => {
         let data = await getData("https://staging.mazaady.com/api/v1/get_all_cats");
         setAllCategory(data.data.categories)
@@ -40,7 +40,7 @@ const FormComp = () => {
         const newSchemaArr = data.data.map((item: propertiesType) => {
             return item.name
         })
-        const mapStateInit = Array(data.data.length).fill({ id: null, name: "", input: "" })
+        const mapStateInit = data.data.map((item: propertiesType) => ({ id: "", name: item.name, input: "" }))
         updateSchema(newSchemaArr);
         setMapState(mapStateInit);
         setProperties(data.data);
@@ -55,7 +55,7 @@ const FormComp = () => {
         const arr2 = properties.slice(index + 1, properties.length);
         const newData = [...arr1, ...data.data, ...arr2];
         const mapArr1 = mapState.slice(0, index + 1);
-        const mapArr2 = Array(data.data.length).fill({ id: null, name: "", input: "" });
+        const mapArr2 = data.data.map((item: propertiesType) => ({ id: "", name: item.name, input: "" }));
         const mapArr3 = mapState.slice(index + 1, mapState.length);
         const newMapArr = [...mapArr1, ...mapArr2, ...mapArr3];
         setProperties(newData);
@@ -105,7 +105,7 @@ const FormComp = () => {
                                     form.setValue(item.name, { id: value, name: name })
                                     let newMapState = mapState.map((item, index2) => {
                                         if (index === index2) {
-                                            return { id: value, name: name, input: "" }
+                                            return { id: value, name: item.name, input: "" }
                                         } else {
                                             return item
                                         }

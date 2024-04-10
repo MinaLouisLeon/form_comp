@@ -33,4 +33,10 @@ type optionsType = {
     slug:string;
 }
 
-export type {categoryType, subCategoryType,propertiesType}
+type mapDataType = {
+    id: number | null,
+    name: string,
+    input?: string
+}
+
+export type {categoryType, subCategoryType,propertiesType,mapDataType}

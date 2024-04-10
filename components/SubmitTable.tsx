@@ -1,7 +1,12 @@
 
+import { mapDataType } from '@/types'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 
-const SubmitTable = ({formData,mapData}:{formData:any,mapData:any}) => {
+
+
+const SubmitTable = ({formData,mapData}:{formData:any,mapData:mapDataType[]}) => {
+  console.log(formData)
+console.log(mapData)
   return (
     <Table className='w-[700px] text-center border'>
         <TableHeader className='bg-gray-100'>
@@ -17,7 +22,7 @@ const SubmitTable = ({formData,mapData}:{formData:any,mapData:any}) => {
                 <TableCell>{key}</TableCell>
                 {formData[key] === undefined ? "not selected" : (
                   formData[key].id === 0.1 ? 
-                    mapData[index].input
+                    mapData.find((item) => item.name === key)?.input
                   : formData[key].name
                 )}
               </TableRow>
