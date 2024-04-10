@@ -5,8 +5,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.
 
 
 const SubmitTable = ({formData,mapData}:{formData:any,mapData:mapDataType[]}) => {
-  console.log(formData)
-console.log(mapData)
   return (
     <Table className='w-[700px] text-center border'>
         <TableHeader className='bg-gray-100'>
